@@ -95,7 +95,7 @@ module Lighthouse
   #   project = Lighthouse::Project.find(44)
   #   project.tickets
   #
-  class LighthouseProject < LighthouseBase
+  class Project < LighthouseBase
     def tickets(options = {})
       Ticket.find(:all, :params => options.update(:project_id => id))
     end
@@ -123,14 +123,14 @@ module Lighthouse
     end
   end
   
-  class LighthouseMembership < LighthouseBase
+  class Membership < LighthouseBase
     site_format << '/users/:user_id'
     def save
       raise Error, "Cannot modify Memberships from the API"
     end
   end
   
-  class LighthouseToken < LighthouseBase
+  class Token < LighthouseBase
     def save
       raise Error, "Cannot modify Tokens from the API"
     end
@@ -160,7 +160,7 @@ module Lighthouse
   #  ticket.tags.delete '@high'
   #  ticket.save
   #
-  class LighthouseTicket < LighthouseBase
+  class Ticket < LighthouseBase
     attr_writer :tags
     site_format << '/projects/:project_id'
  
@@ -214,23 +214,23 @@ module Lighthouse
       end
   end
   
-  class LighthouseMessage < LighthouseBase
+  class Message < LighthouseBase
     site_format << '/projects/:project_id'
   end
   
-  class LighthouseMilestone < LighthouseBase
+  class Milestone < LighthouseBase
     site_format << '/projects/:project_id'
   end
   
-  class LighthouseBin < LighthouseBase
+  class Bin < LighthouseBase
     site_format << '/projects/:project_id'
   end
   
-  class LighthouseChangeset < LighthouseBase
+  class Changeset < LighthouseBase
     site_format << '/projects/:project_id'
   end
   
-  class LighthouseChange < Array; end
+  class Change < Array; end
 end
  
 module ActiveResource
